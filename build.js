@@ -149,7 +149,7 @@ function galleryPage(items) {
   <main>${cards}
   </main>
 <script>
-  const fit = (f) => { try { f.style.height = '10px'; f.style.height = f.contentDocument.documentElement.scrollHeight + 'px'; } catch (e) {} };
+  const fit = (f) => { try { f.style.height = '10px'; f.style.height = (f.contentDocument.documentElement.scrollHeight + 2) + 'px'; } catch (e) {} };
   document.querySelectorAll('iframe').forEach((f) => f.addEventListener('load', () => fit(f)));
   document.getElementById('w').addEventListener('change', (e) => {
     document.documentElement.style.setProperty('--w', e.target.value);
