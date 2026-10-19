@@ -1,0 +1,17 @@
+Welcome to AIWA
+
+Hi {{first_name}}
+
+Your account is live. You have {{credits}} credits to spend. Each credit lets you take a plain-English prompt and turn it into a working full-stack app: designed frontend, working backend, its own database, sign in, and one-click publishing to a live URL.
+
+No setup. No config files. Just describe what you want and hit enter.
+
+Build your first app: {{action_url}}
+
+Questions? Just reply, it reaches me directly.
+
+Leon, AIWA
+
+--
+AIWA turns a plain-English prompt into a working full-stack app.
+Lagos, Nigeria

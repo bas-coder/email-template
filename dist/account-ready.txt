@@ -1,0 +1,17 @@
+Your account is ready!
+
+Hi {{first_name}}
+
+Your account is ready, it comes with {{credits}} credits, enough to take an idea from a plain-English prompt to a working full-stack app: designed frontend, working backend, its own database, sign-in, and one-click publishing to a live URL.
+
+One step left: set your password and start building.
+
+Set your Password: {{action_url}}
+
+Questions? Just reply, it reaches me directly.
+
+Leon, AIWA
+
+--
+AIWA turns a plain-English prompt into a working full-stack app.
+Lagos, Nigeria

@@ -1,0 +1,22 @@
+{
+  "subject": "Support nudge: {{user_name}}'s deploy keeps failing",
+  "preheader": "{{user_name}} ({{user_email}}) needs help. Their deploy has failed repeatedly.",
+  "audience": "AIWA team",
+  "tab": "Support Nudge",
+  "header": "hero",
+  "hero": "hero-dusk.jpg",
+  "heroAlt": "Dusk over the hills, with a project marked Deploy Failed",
+  "heroHref": "{{tickets_url}}",
+  "blocks": [
+    { "type": "p", "html": "<strong style=\"font-weight:600;\">{{user_name}}</strong> (<a class=\"t-link\" href=\"mailto:{{user_email}}\" style=\"color:#BF4E0B; text-decoration:underline;\">{{user_email}}</a>) needs help - their deploy has failed repeatedly" },
+    { "type": "code", "code": "{{error_log}}" },
+    { "type": "button", "label": "Open the Tickets Tab", "url": "{{tickets_url}}", "arrow": true },
+    { "type": "signoff" }
+  ],
+  "sample": {
+    "user_name": "stuckuser",
+    "user_email": "stuckuser@example.com",
+    "error_log": "npm error code EUSAGE\nnpm error `npm ci` can only install packages when your package.json and package-lock.json are in sync.\nnpm error Invalid: lock file's @radix-ui/react-slot@1.3.0 does not satisfy @radix-ui/react-slot@1.3.3",
+    "tickets_url": "https://localhost:4000/admin/tickets"
+  }
+}

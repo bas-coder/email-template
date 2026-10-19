@@ -1,0 +1,12 @@
+{
+  "assetBaseUrl": "{{asset_base_url}}",
+  "homeUrl": "https://aiwa.codes",
+  "addressUrl": "https://maps.google.com/?q=Lagos,+Nigeria",
+  "signer": "Leon, AIWA",
+  "socials": [
+    { "icon": "whatsapp", "label": "WhatsApp", "url": "#" },
+    { "icon": "facebook", "label": "Facebook", "url": "#" },
+    { "icon": "linkedin", "label": "LinkedIn", "url": "#" },
+    { "icon": "x", "label": "X", "url": "#" }
+  ]
+}

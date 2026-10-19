@@ -1,0 +1,15 @@
+Support Nudge
+
+{{user_name}} ({{user_email}}) needs help - their deploy has failed repeatedly
+
+{{error_log}}
+
+Open the Tickets Tab: {{tickets_url}}
+
+Questions? Just reply, it reaches me directly.
+
+Leon, AIWA
+
+--
+AIWA turns a plain-English prompt into a working full-stack app.
+Lagos, Nigeria

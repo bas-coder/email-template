@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIWA Emails</title>
+<style>
+  :root { --bg:#EDEAE4; --ink:#25211D; --muted:#6B6357; --line:#DDD8CF; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:14px/1.5 Inter, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+  .top { position:sticky; top:0; z-index:2; display:flex; gap:16px; align-items:center; justify-content:space-between; padding:14px 24px; background:rgba(237,234,228,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .top h1 { margin:0; font-size:16px; }
+  .top label { color:var(--muted); font-size:13px; display:flex; gap:8px; align-items:center; }
+  main { padding:24px; display:grid; gap:40px; }
+  .email header h2 { margin:0; font-size:15px; }
+  .email header p { margin:2px 0 12px; color:var(--muted); font-size:12px; }
+  .pair { display:flex; gap:24px; flex-wrap:wrap; }
+  figure { margin:0; }
+  figcaption { font-size:12px; color:var(--muted); margin-bottom:6px; }
+  iframe { width:var(--w, 600px); max-width:calc(100vw - 48px); height:1100px; border:1px solid var(--line); border-radius:12px; background:#fff; display:block; }
+</style></head>
+<body>
+  <div class="top"><h1>AIWA Emails &middot; 4 templates</h1>
+    <label>Width <select id="w"><option value="600px">Desktop 600</option><option value="375px">Mobile 375</option></select></label>
+  </div>
+  <main>
+    <section class="email">
+      <header>
+        <h2>Welcome to AIWA, your account is live</h2>
+        <p>User &middot; <code>dist/account-live.html</code> &middot; 20.0 KB</p>
+      </header>
+      <div class="pair">
+        <figure><figcaption>Light</figcaption><iframe src="account-live.light.html" title="Welcome to AIWA, your account is live (light)" loading="lazy"></iframe></figure>
+        <figure><figcaption>Dark</figcaption><iframe src="account-live.dark.html" title="Welcome to AIWA, your account is live (dark)" loading="lazy"></iframe></figure>
+      </div>
+    </section>
+
+    <section class="email">
+      <header>
+        <h2>Your AIWA account is ready</h2>
+        <p>User &middot; <code>dist/account-ready.html</code> &middot; 20.5 KB</p>
+      </header>
+      <div class="pair">
+        <figure><figcaption>Light</figcaption><iframe src="account-ready.light.html" title="Your AIWA account is ready (light)" loading="lazy"></iframe></figure>
+        <figure><figcaption>Dark</figcaption><iframe src="account-ready.dark.html" title="Your AIWA account is ready (dark)" loading="lazy"></iframe></figure>
+      </div>
+    </section>
+
+    <section class="email">
+      <header>
+        <h2>Support nudge: stuckuser's deploy keeps failing</h2>
+        <p>AIWA team &middot; <code>dist/support-nudge.html</code> &middot; 19.9 KB</p>
+      </header>
+      <div class="pair">
+        <figure><figcaption>Light</figcaption><iframe src="support-nudge.light.html" title="Support nudge: stuckuser's deploy keeps failing (light)" loading="lazy"></iframe></figure>
+        <figure><figcaption>Dark</figcaption><iframe src="support-nudge.dark.html" title="Support nudge: stuckuser's deploy keeps failing (dark)" loading="lazy"></iframe></figure>
+      </div>
+    </section>
+
+    <section class="email">
+      <header>
+        <h2>Welcome to AIWA, set your password</h2>
+        <p>User &middot; <code>dist/welcome-set-password.html</code> &middot; 20.9 KB</p>
+      </header>
+      <div class="pair">
+        <figure><figcaption>Light</figcaption><iframe src="welcome-set-password.light.html" title="Welcome to AIWA, set your password (light)" loading="lazy"></iframe></figure>
+        <figure><figcaption>Dark</figcaption><iframe src="welcome-set-password.dark.html" title="Welcome to AIWA, set your password (dark)" loading="lazy"></iframe></figure>
+      </div>
+    </section>
+  </main>
+<script>
+  const fit = (f) => { try { f.style.height = '10px'; f.style.height = f.contentDocument.documentElement.scrollHeight + 'px'; } catch (e) {} };
+  document.querySelectorAll('iframe').forEach((f) => f.addEventListener('load', () => fit(f)));
+  document.getElementById('w').addEventListener('change', (e) => {
+    document.documentElement.style.setProperty('--w', e.target.value);
+    setTimeout(() => document.querySelectorAll('iframe').forEach(fit), 50);
+  });
+</script>
+</body></html>

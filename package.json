@@ -1,0 +1,14 @@
+{
+  "name": "aiwa-emails",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AIWA transactional email templates: one master layout, light and dark mode, table-based HTML for every major client.",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node build.js --watch",
+    "dev": "node build.js --serve"
+  },
+  "devDependencies": {
+    "live-server": "1.2.2"
+  }
+}
