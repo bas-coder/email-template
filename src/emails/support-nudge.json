@@ -9,7 +9,7 @@
   "heroAlt": "Dusk over the hills, with a project marked Deploy Failed",
   "heroHref": "{{tickets_url}}",
   "blocks": [
-    { "type": "p", "html": "<strong style=\"font-weight:600;\">{{user_name}}</strong> (<a class=\"t-link\" href=\"mailto:{{user_email}}\" style=\"color:#BF4E0B; text-decoration:underline;\">{{user_email}}</a>) needs help - their deploy has failed repeatedly" },
+    { "type": "p", "html": "<strong style=\"font-weight:600;\">{{user_name}}</strong> (<a class=\"t-link lnk\" href=\"mailto:{{user_email}}\" style=\"color:#BF4E0B; text-decoration:underline;\">{{user_email}}</a>) needs help - their deploy has failed repeatedly" },
     { "type": "code", "code": "{{error_log}}" },
     { "type": "button", "label": "Open the Tickets Tab", "url": "{{tickets_url}}", "arrow": true },
     { "type": "signoff" }

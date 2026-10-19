@@ -1,0 +1,35 @@
+{
+  "preview": { "label": "master", "order": 0 },
+  "subject": "AIWA master template",
+  "preheader": "Every block an AIWA email can use, in one place.",
+  "audience": "Reference",
+  "tab": "Welcome to AIWA",
+  "header": "hero",
+  "hero": "hero-dawn.jpg",
+  "heroDark": "hero-dawn-dark.jpg",
+  "heroAlt": "Sunrise over the hills, with an AIWA prompt: Ask AIWA to build a CRM for my sales team",
+  "heroHref": "{{action_url}}",
+  "alternateHeader": { "header": "title", "title": "Your account is ready! &#127881;" },
+  "footerMark": true,
+  "blocks": [
+    { "type": "p", "html": "Hi <strong style=\"font-weight:600;\">{{first_name}}</strong>" },
+    { "type": "heading", "html": "Everything an AIWA email needs" },
+    { "type": "meta", "html": "<a class=\"t-link lnk\" href=\"mailto:{{user_email}}\" style=\"color:#BF4E0B; text-decoration:underline;\">{{user_email}}</a> &middot; {{company}} &middot; {{team_size}}" },
+    { "type": "p", "html": "This is the master template. Each section is a block: copy the ones an email needs, delete the rest, and keep them in this order. Text can be <strong style=\"font-weight:600;\">bold</strong> or a <a class=\"t-link lnk\" href=\"{{action_url}}\" style=\"color:#BF4E0B; text-decoration:underline;\">link</a>." },
+    { "type": "quote", "html": "{{lead_message}}" },
+    { "type": "code", "code": "{{error_log}}" },
+    { "type": "button", "label": "Open your workspace", "url": "{{action_url}}", "arrow": true },
+    { "type": "fallback", "url": "{{action_url}}" },
+    { "type": "note", "html": "This link expires in 24 hours. If you were not expecting this email, you can ignore it." },
+    { "type": "signoff" }
+  ],
+  "sample": {
+    "first_name": "Alabson",
+    "user_email": "jordan@studiovale.com",
+    "company": "Studio Vale",
+    "team_size": "11-50 people",
+    "lead_message": "We run a 40-person product studio and want to move client MVPs onto one platform with volume credits and sign-off flows.",
+    "error_log": "npm error code EUSAGE\nnpm error `npm ci` can only install packages when your package.json and package-lock.json are in sync.",
+    "action_url": "https://localhost:4000/welcome"
+  }
+}
