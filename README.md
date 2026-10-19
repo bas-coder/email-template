@@ -18,7 +18,7 @@ npm install
 npm run dev
 ```
 
-Then open http://localhost:5510/preview/ to see every email side by side in light and dark, at desktop (600) or mobile (375) width. Saving any file in `src/` rebuilds the emails and reloads the page.
+Then open http://localhost:5510/preview/ and pick an email and its mode (light or dark) from the **Template** list. **Desktop** and **Mobile · 375** switch the width, and **Open email** opens it on its own. The address keeps your choice (for example `#support-nudge.dark`), so you can link straight to one. Saving any file in `src/` rebuilds the emails and reloads the page.
 
 `npm run build` builds once, with no server.
 
