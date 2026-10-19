@@ -1,0 +1,14 @@
+{{user_name}}
+
+{{user_email}}
+
+Signed up on {{platform_name}}, {{platform_url}}.
+
+They are platform user #{{user_number}}.
+
+Open the control panel: {{control_panel_url}}
+
+
+--
+AIWA turns a plain-English prompt into a working full-stack app.
+Lagos, Nigeria

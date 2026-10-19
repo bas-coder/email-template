@@ -1,0 +1,14 @@
+{{inviter_name}} invited you to {{project_name}}
+
+You have been given {{access_level}} access to the {{project_name}} project in the {{workspace_name}} workspace, so you can {{access_summary}}.
+
+This invitation was sent to {{invitee_email}}. Sign in with that address to accept it, otherwise AIWA cannot match the invitation to your account.
+
+Accept invitation: {{action_url}}
+
+This link expires on {{expires_on}}. If you were not expecting this, you can ignore this email.
+
+
+--
+AIWA turns a plain-English prompt into a working full-stack app.
+Lagos, Nigeria

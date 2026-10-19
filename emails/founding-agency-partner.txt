@@ -1,0 +1,19 @@
+Hi {{first_name}}, you are in.
+
+Your place as one of the founding agency partners is secured. You paid {{amount_paid}} for the year, renewing {{renewal_date}}, at a rate that is locked for as long as you stay a partner.
+
+Create your AIWA account using {{partner_email}}. That exact address is what unlocks your founding partner plan automatically.
+
+Then join the founders community and book your private onboarding call. Both are on your welcome page.
+
+Open your welcome page: {{welcome_url}}
+
+Keep this link, it is where your onboarding lives.
+
+Questions? Just reply, it reaches me directly.
+
+Leon, AIWA
+
+--
+AIWA turns a plain-English prompt into a working full-stack app.
+Lagos, Nigeria

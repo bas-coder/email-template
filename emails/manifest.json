@@ -1,0 +1,282 @@
+[
+  {
+    "name": "confirm-email",
+    "html": "emails/confirm-email.html",
+    "text": "emails/confirm-email.txt",
+    "audience": "User",
+    "subject": "Confirm your email",
+    "preheader": "Verify your address to secure your AIWA account. The link expires in 24 hours.",
+    "variables": [
+      "action_url"
+    ],
+    "sample": {
+      "action_url": "https://localhost:4800/api/auth/verify-email?token=SAMPLE_TOKEN_NOT_REAL"
+    }
+  },
+  {
+    "name": "welcome-set-password",
+    "html": "emails/welcome-set-password.html",
+    "text": "emails/welcome-set-password.txt",
+    "audience": "User",
+    "subject": "Welcome to AIWA, set your password",
+    "preheader": "Your account is ready with {{credits}} credits. One step left: set your password.",
+    "variables": [
+      "action_url",
+      "credits",
+      "first_name"
+    ],
+    "sample": {
+      "first_name": "Alabson",
+      "credits": "515",
+      "action_url": "https://localhost:4000/welcome"
+    }
+  },
+  {
+    "name": "account-ready",
+    "html": "emails/account-ready.html",
+    "text": "emails/account-ready.txt",
+    "audience": "User",
+    "subject": "Your AIWA account is ready",
+    "preheader": "It comes with {{credits}} credits. One step left: set your password.",
+    "variables": [
+      "action_url",
+      "credits",
+      "first_name"
+    ],
+    "sample": {
+      "first_name": "Alabson",
+      "credits": "515",
+      "action_url": "https://localhost:4000/welcome"
+    }
+  },
+  {
+    "name": "account-live",
+    "html": "emails/account-live.html",
+    "text": "emails/account-live.txt",
+    "audience": "User",
+    "subject": "Welcome to AIWA, your account is live",
+    "preheader": "You have {{credits}} credits. Describe what you want and hit enter.",
+    "variables": [
+      "action_url",
+      "credits",
+      "first_name"
+    ],
+    "sample": {
+      "first_name": "Alabson",
+      "credits": "80",
+      "action_url": "https://localhost:4000/welcome"
+    }
+  },
+  {
+    "name": "workspace-invite",
+    "html": "emails/workspace-invite.html",
+    "text": "emails/workspace-invite.txt",
+    "audience": "User",
+    "subject": "{{inviter_name}} invited you to {{workspace_name}} on AIWA",
+    "preheader": "You have {{access_level}} access to the {{workspace_name}} workspace. Accept to open it.",
+    "variables": [
+      "access_level",
+      "access_summary",
+      "action_url",
+      "expires_on",
+      "invitee_email",
+      "inviter_name",
+      "workspace_name"
+    ],
+    "sample": {
+      "inviter_name": "Alabson Usman",
+      "workspace_name": "Quest Studio",
+      "access_level": "Can view",
+      "access_summary": "open and view it, but not make changes",
+      "invitee_email": "ada@example.com",
+      "action_url": "http://localhost:4000/invite/SAMPLE_TOKEN_NOT_REAL",
+      "expires_on": "October 20, 2026"
+    }
+  },
+  {
+    "name": "project-invite",
+    "html": "emails/project-invite.html",
+    "text": "emails/project-invite.txt",
+    "audience": "User",
+    "subject": "{{inviter_name}} invited you to {{project_name}} on AIWA",
+    "preheader": "You have {{access_level}} access to {{project_name}}. Accept to open it.",
+    "variables": [
+      "access_level",
+      "access_summary",
+      "action_url",
+      "expires_on",
+      "invitee_email",
+      "inviter_name",
+      "project_name",
+      "workspace_name"
+    ],
+    "sample": {
+      "inviter_name": "Alabson Usman",
+      "project_name": "Monograph",
+      "workspace_name": "Quest Studio",
+      "access_level": "Can edit",
+      "access_summary": "open it and make changes",
+      "invitee_email": "ada@example.com",
+      "action_url": "http://localhost:4000/invite/SAMPLE_TOKEN_NOT_REAL",
+      "expires_on": "October 20, 2026"
+    }
+  },
+  {
+    "name": "site-back-online",
+    "html": "emails/site-back-online.html",
+    "text": "emails/site-back-online.txt",
+    "audience": "User",
+    "subject": "{{project_name}} is back online",
+    "preheader": "We fixed the failed publish. Your live site matches your workspace again.",
+    "variables": [
+      "failure_reason",
+      "project_name",
+      "project_url"
+    ],
+    "sample": {
+      "project_name": "Monograph",
+      "failure_reason": "two package versions had drifted apart",
+      "project_url": "http://localhost:4000/projects/monograph"
+    }
+  },
+  {
+    "name": "support-nudge",
+    "html": "emails/support-nudge.html",
+    "text": "emails/support-nudge.txt",
+    "audience": "AIWA team",
+    "subject": "Support nudge: {{user_name}}'s deploy keeps failing",
+    "preheader": "{{user_name}} ({{user_email}}) needs help. Their deploy has failed repeatedly.",
+    "variables": [
+      "error_log",
+      "tickets_url",
+      "user_email",
+      "user_name"
+    ],
+    "sample": {
+      "user_name": "stuckuser",
+      "user_email": "stuckuser@example.com",
+      "error_log": "npm error code EUSAGE\nnpm error `npm ci` can only install packages when your package.json and package-lock.json are in sync.\nnpm error Invalid: lock file's @radix-ui/react-slot@1.3.0 does not satisfy @radix-ui/react-slot@1.3.3",
+      "tickets_url": "https://localhost:4000/admin/tickets"
+    }
+  },
+  {
+    "name": "new-signup",
+    "html": "emails/new-signup.html",
+    "text": "emails/new-signup.txt",
+    "audience": "AIWA team",
+    "subject": "New signup: {{user_name}}",
+    "preheader": "{{user_name}} ({{user_email}}) just signed up. They are user #{{user_number}}.",
+    "variables": [
+      "control_panel_url",
+      "user_email",
+      "user_name",
+      "user_number"
+    ],
+    "sample": {
+      "user_name": "Jamie Rivers",
+      "user_email": "newuser@example.com",
+      "user_number": "128",
+      "control_panel_url": "http://localhost:4000/admin"
+    }
+  },
+  {
+    "name": "new-signup-white-label",
+    "html": "emails/new-signup-white-label.html",
+    "text": "emails/new-signup-white-label.txt",
+    "audience": "AIWA team",
+    "subject": "New signup on {{platform_name}}: {{user_name}}",
+    "preheader": "{{user_name}} signed up on {{platform_name}}. They are platform user #{{user_number}}.",
+    "variables": [
+      "control_panel_url",
+      "platform_name",
+      "platform_url",
+      "user_email",
+      "user_name",
+      "user_number"
+    ],
+    "sample": {
+      "user_name": "Jamie Rivers",
+      "user_email": "newuser@example.com",
+      "platform_name": "BJCrum",
+      "platform_url": "https://app.bjcrum.com",
+      "user_number": "128",
+      "control_panel_url": "http://localhost:4000/admin"
+    }
+  },
+  {
+    "name": "enterprise-lead",
+    "html": "emails/enterprise-lead.html",
+    "text": "emails/enterprise-lead.txt",
+    "audience": "AIWA team",
+    "subject": "Enterprise lead: {{lead_name}}",
+    "preheader": "{{lead_name}} asked for an enterprise call. They expect a call within 24 hours.",
+    "variables": [
+      "lead_email",
+      "lead_message",
+      "lead_name",
+      "lead_source",
+      "lead_website",
+      "lead_website_url",
+      "leads_url",
+      "team_size"
+    ],
+    "sample": {
+      "lead_name": "Jordan Vale",
+      "lead_source": "pricing page",
+      "lead_email": "jordan@studiovale.com",
+      "lead_website": "studiovale.com",
+      "lead_website_url": "https://studiovale.com",
+      "team_size": "11-50 people",
+      "lead_message": "We run a 40-person product studio and want to move client MVPs onto one platform with volume credits and sign-off flows.",
+      "leads_url": "http://localhost:4000/admin/leads"
+    }
+  },
+  {
+    "name": "founding-agency-partner",
+    "html": "emails/founding-agency-partner.html",
+    "text": "emails/founding-agency-partner.txt",
+    "audience": "User",
+    "subject": "You are in, {{first_name}}",
+    "preheader": "Your founding agency partner place is secured. Here is how to unlock it.",
+    "variables": [
+      "amount_paid",
+      "first_name",
+      "partner_email",
+      "renewal_date",
+      "welcome_url"
+    ],
+    "sample": {
+      "first_name": "Alabson",
+      "amount_paid": "$997.00",
+      "renewal_date": "October 13, 2027",
+      "partner_email": "partner@studiovale.com",
+      "welcome_url": "https://aiwa.codes/early/welcome?session_id=cs_test_SAMPLE_NOT_REAL"
+    }
+  },
+  {
+    "name": "new-founding-partner",
+    "html": "emails/new-founding-partner.html",
+    "text": "emails/new-founding-partner.txt",
+    "audience": "AIWA team",
+    "subject": "New founding partner: {{partner_name}}",
+    "preheader": "{{partner_name}} paid {{amount_paid}} for the founding agency programme. {{places_left}} of {{places_total}} places left.",
+    "variables": [
+      "amount_paid",
+      "checkout_id",
+      "control_panel_url",
+      "partner_email",
+      "partner_name",
+      "places_left",
+      "places_total"
+    ],
+    "sample": {
+      "partner_name": "Jordan Vale",
+      "partner_email": "partner@studiovale.com",
+      "checkout_id": "cs_test_SAMPLE_NOT_REAL",
+      "amount_paid": "$997.00",
+      "places_left": "3",
+      "places_total": "25",
+      "control_panel_url": "http://localhost:4000/admin"
+    }
+  }
+]

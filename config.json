@@ -7,22 +7,22 @@
     {
       "icon": "whatsapp",
       "label": "WhatsApp",
-      "url": "#"
+      "url": "https://chat.whatsapp.com/KL6AucmDI7v8gjuKjhW58e"
     },
     {
       "icon": "facebook",
       "label": "Facebook",
-      "url": "#"
+      "url": "https://web.facebook.com/aiwacodes"
     },
     {
       "icon": "linkedin",
       "label": "LinkedIn",
-      "url": "#"
+      "url": "https://www.linkedin.com/company/aiwacodes/"
     },
     {
       "icon": "x",
       "label": "X",
-      "url": "#"
+      "url": "https://x.com/aiwadotcodes"
     }
   ]
 }

@@ -1,0 +1,42 @@
+{
+  "preview": {
+    "label": "back online",
+    "order": 7
+  },
+  "subject": "{{project_name}} is back online",
+  "preheader": "We fixed the failed publish. Your live site matches your workspace again.",
+  "audience": "User",
+  "tab": "{{project_name}}",
+  "header": "hero",
+  "hero": "hero-day.jpg",
+  "heroAlt": "A sunlit mountain lake at midday",
+  "heroHref": "{{project_url}}",
+  "blocks": [
+    {
+      "type": "heading",
+      "html": "Your site is back online"
+    },
+    {
+      "type": "p",
+      "html": "Thanks for flagging this. The last publish of <strong style=\"font-weight:600;\">{{project_name}}</strong> failed because {{failure_reason}}."
+    },
+    {
+      "type": "p",
+      "html": "We fixed it and republished. Your live site now matches the latest version in your workspace."
+    },
+    {
+      "type": "button",
+      "label": "Open {{project_name}}",
+      "url": "{{project_url}}",
+      "arrow": true
+    },
+    {
+      "type": "signoff"
+    }
+  ],
+  "sample": {
+    "project_name": "Monograph",
+    "failure_reason": "two package versions had drifted apart",
+    "project_url": "http://localhost:4000/projects/monograph"
+  }
+}

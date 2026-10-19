@@ -1,0 +1,17 @@
+{{project_name}}
+
+Your site is back online
+
+Thanks for flagging this. The last publish of {{project_name}} failed because {{failure_reason}}.
+
+We fixed it and republished. Your live site now matches the latest version in your workspace.
+
+Open {{project_name}}: {{project_url}}
+
+Questions? Just reply, it reaches me directly.
+
+Leon, AIWA
+
+--
+AIWA turns a plain-English prompt into a working full-stack app.
+Lagos, Nigeria

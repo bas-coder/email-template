@@ -1,0 +1,46 @@
+{
+  "preview": {
+    "label": "founding partner",
+    "order": 13
+  },
+  "subject": "New founding partner: {{partner_name}}",
+  "preheader": "{{partner_name}} paid {{amount_paid}} for the founding agency programme. {{places_left}} of {{places_total}} places left.",
+  "audience": "AIWA team",
+  "tab": "Founding partner",
+  "header": "title",
+  "title": "{{partner_name}}",
+  "footerMark": true,
+  "blocks": [
+    {
+      "type": "meta",
+      "html": "<a class=\"t-link lnk\" href=\"mailto:{{partner_email}}\" style=\"color:#BF4E0B; text-decoration:underline;\">{{partner_email}}</a> &middot; {{checkout_id}}"
+    },
+    {
+      "type": "p",
+      "html": "Paid <strong style=\"font-weight:600;\">{{amount_paid}}</strong> for the founding agency programme."
+    },
+    {
+      "type": "p",
+      "html": "<strong style=\"font-weight:600;\">{{places_left}} of {{places_total}}</strong> places left."
+    },
+    {
+      "type": "note",
+      "html": "They have no AIWA account yet. The plan provisions itself when they sign up with this email, and the agency name is collected on the welcome page."
+    },
+    {
+      "type": "button",
+      "label": "Open the control panel",
+      "url": "{{control_panel_url}}",
+      "arrow": true
+    }
+  ],
+  "sample": {
+    "partner_name": "Jordan Vale",
+    "partner_email": "partner@studiovale.com",
+    "checkout_id": "cs_test_SAMPLE_NOT_REAL",
+    "amount_paid": "$997.00",
+    "places_left": "3",
+    "places_total": "25",
+    "control_panel_url": "http://localhost:4000/admin"
+  }
+}

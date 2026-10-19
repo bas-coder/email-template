@@ -1,0 +1,51 @@
+{
+  "preview": {
+    "label": "founding agency partner",
+    "order": 12
+  },
+  "subject": "You are in, {{first_name}}",
+  "preheader": "Your founding agency partner place is secured. Here is how to unlock it.",
+  "audience": "User",
+  "tab": "Founding Agency Partner",
+  "header": "title",
+  "title": "Hi {{first_name}}, you are in. &#127881;",
+  "footerMark": true,
+  "blocks": [
+    {
+      "type": "p",
+      "html": "Your place as one of the founding agency partners is secured. You paid <strong style=\"font-weight:600;\">{{amount_paid}}</strong> for the year, renewing {{renewal_date}}, at a rate that is locked for as long as you stay a partner."
+    },
+    {
+      "type": "p",
+      "html": "Create your AIWA account using <strong style=\"font-weight:600;\">{{partner_email}}</strong>. That exact address is what unlocks your founding partner plan automatically."
+    },
+    {
+      "type": "p",
+      "html": "Then join the founders community and book your private onboarding call. Both are on your welcome page."
+    },
+    {
+      "type": "button",
+      "label": "Open your welcome page",
+      "url": "{{welcome_url}}",
+      "arrow": true
+    },
+    {
+      "type": "fallback",
+      "url": "{{welcome_url}}"
+    },
+    {
+      "type": "note",
+      "html": "Keep this link, it is where your onboarding lives."
+    },
+    {
+      "type": "signoff"
+    }
+  ],
+  "sample": {
+    "first_name": "Alabson",
+    "amount_paid": "$997.00",
+    "renewal_date": "October 13, 2027",
+    "partner_email": "partner@studiovale.com",
+    "welcome_url": "https://aiwa.codes/early/welcome?session_id=cs_test_SAMPLE_NOT_REAL"
+  }
+}

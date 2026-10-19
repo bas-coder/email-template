@@ -1,0 +1,16 @@
+{{partner_name}}
+
+{{partner_email}} · {{checkout_id}}
+
+Paid {{amount_paid}} for the founding agency programme.
+
+{{places_left}} of {{places_total}} places left.
+
+They have no AIWA account yet. The plan provisions itself when they sign up with this email, and the agency name is collected on the welcome page.
+
+Open the control panel: {{control_panel_url}}
+
+
+--
+AIWA turns a plain-English prompt into a working full-stack app.
+Lagos, Nigeria

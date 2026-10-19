@@ -10,12 +10,25 @@ One master HTML email template for every AIWA email, plus the emails built from 
 | `preview/` | Preview of every email, light and dark, desktop and mobile. |
 | `src/`, `build.js` | The source the master and emails are generated from. Optional; see [Editing](#editing). |
 
-| Email | File | Goes to |
-|---|---|---|
-| Welcome, set your password | `emails/welcome-set-password.html` | User |
-| Welcome, account is ready (title header) | `emails/account-ready.html` | User |
-| Welcome, account is live | `emails/account-live.html` | User |
-| Support nudge, deploy failing | `emails/support-nudge.html` | AIWA team |
+### The emails
+
+| Email | File (`emails/`) | Goes to | Header |
+|---|---|---|---|
+| Confirm your email | `confirm-email.html` | User | Dawn hero |
+| Welcome, set your password | `welcome-set-password.html` | User | Dawn hero |
+| Welcome, account is ready | `account-ready.html` | User | Title |
+| Welcome, account is live | `account-live.html` | User | Day hero (live site) |
+| Invited to a workspace | `workspace-invite.html` | User | Title |
+| Invited to a project | `project-invite.html` | User | Title |
+| Site back online | `site-back-online.html` | User | Day hero |
+| Founding agency partner, you're in | `founding-agency-partner.html` | User | Title |
+| Support nudge, deploy failing | `support-nudge.html` | AIWA team | Dusk hero (deploy failed) |
+| New signup | `new-signup.html` | AIWA team | Title |
+| New signup, white label | `new-signup-white-label.html` | AIWA team | Title |
+| Enterprise lead | `enterprise-lead.html` | AIWA team | Title |
+| New founding partner | `new-founding-partner.html` | AIWA team | Title |
+
+**`emails/manifest.json`** lists every email's subject line, preview text, audience, the exact variables it needs, and sample values. Your sending code can read it directly.
 
 ## Sending with Resend
 
@@ -43,10 +56,21 @@ Always escape user-supplied values, as `fill` does above. Use the `html` field r
 
 ### Variables
 
-| Email | Variables |
+The full list per email is in `emails/manifest.json`. The common ones:
+
+| Variable | Meaning |
 |---|---|
-| welcome-set-password, account-ready, account-live | `first_name`, `credits`, `action_url` |
-| support-nudge | `user_name`, `user_email`, `error_log` (plain text; line breaks are kept), `tickets_url` |
+| `first_name` | The recipient's first name |
+| `action_url` | The email's main link (verify, set password, accept invite…). It is used for both the button and the fallback link. |
+| `credits` | Credits on the account |
+| `user_name`, `user_email`, `user_number` | The user an internal email is about |
+| `inviter_name`, `workspace_name`, `project_name`, `access_level`, `access_summary`, `invitee_email`, `expires_on` | Invites. `access_summary` finishes the sentence "so you can …", for example "open and view it, but not make changes". |
+| `error_log` | Plain text. Line breaks are kept. |
+| `lead_*`, `team_size` | Enterprise lead details |
+| `partner_*`, `amount_paid`, `renewal_date`, `places_left`, `places_total`, `checkout_id`, `welcome_url` | Founding partner emails |
+| `control_panel_url`, `leads_url`, `tickets_url`, `project_url` | Links into AIWA |
+
+The subject lines contain variables too, so fill the subject the same way as the HTML.
 
 ## The blocks
 
@@ -54,7 +78,7 @@ Each block in `master.html` sits between `<!-- BLOCK: name -->` and `<!-- /BLOCK
 
 | Block | Use it for |
 |---|---|
-| `header-hero` | Tab + sunset hero image. The sun encodes the state: dawn = getting started, day = live or success, dusk = needs attention. |
+| `header-hero` | Tab + sunset hero image. The sun encodes the state: dawn = getting started, day = live or success, dusk = needs attention. Heroes in `assets/`: `hero-dawn` (with the AIWA prompt), `hero-live` (a live site), `hero-dusk` (a failed deploy), and plain scenes `hero-dawn-plain`, `hero-day` and `hero-dusk-plain`. |
 | `header-title` | Tab + title panel, for emails without a hero. It sits commented out under the hero in `master.html`; use one header or the other. |
 | `paragraph` | Body text, 14/20. Bold: `<strong style="font-weight:600;">`. Links: `class="t-link lnk"`. |
 | `heading` * | A headline inside the message. |
@@ -128,7 +152,6 @@ Type: Inter 14/20 body, 14/20 Medium buttons, 18/26 SemiBold headings, 28/36 Med
 
 ## Open items
 
-- Social links in `config.json` are still `#`.
 - Host `assets/` on an AIWA domain (see [Images](#images)).
 - Send real test emails to Gmail (web and app), Outlook and Apple Mail before launch.
-- The other 8 emails: build them from the master's blocks.
+- Copy check: `project-invite` was written from the workspace invite, since there was no current version to copy. The others follow the existing AIWA emails.

@@ -1,0 +1,14 @@
+Confirm your email
+
+Confirm it’s you
+
+Verify your email address to secure your AIWA account and start building full-stack apps from a plain-English prompt.
+
+Verify email: {{action_url}}
+
+This link expires in 24 hours. If you didn’t create an AIWA account, you can safely ignore this email.
+
+
+--
+AIWA turns a plain-English prompt into a working full-stack app.
+Lagos, Nigeria

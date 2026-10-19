@@ -1,0 +1,12 @@
+{{user_name}}
+
+{{user_email}}
+
+They are user #{{user_number}}.
+
+Open the control panel: {{control_panel_url}}
+
+
+--
+AIWA turns a plain-English prompt into a working full-stack app.
+Lagos, Nigeria

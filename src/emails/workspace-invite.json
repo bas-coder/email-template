@@ -1,0 +1,46 @@
+{
+  "preview": {
+    "label": "workspace invite",
+    "order": 5
+  },
+  "subject": "{{inviter_name}} invited you to {{workspace_name}} on AIWA",
+  "preheader": "You have {{access_level}} access to the {{workspace_name}} workspace. Accept to open it.",
+  "audience": "User",
+  "tab": "You have been invited",
+  "header": "title",
+  "title": "{{inviter_name}} invited you to {{workspace_name}}",
+  "footerMark": true,
+  "blocks": [
+    {
+      "type": "p",
+      "html": "You have been given <strong style=\"font-weight:600;\">{{access_level}}</strong> access to the {{workspace_name}} workspace on AIWA, so you can {{access_summary}}."
+    },
+    {
+      "type": "p",
+      "html": "This invitation was sent to <a class=\"t-link lnk\" href=\"mailto:{{invitee_email}}\" style=\"color:#BF4E0B; text-decoration:underline;\">{{invitee_email}}</a>. Sign in with that address to accept it, otherwise AIWA cannot match the invitation to your account."
+    },
+    {
+      "type": "button",
+      "label": "Accept invitation",
+      "url": "{{action_url}}",
+      "arrow": true
+    },
+    {
+      "type": "fallback",
+      "url": "{{action_url}}"
+    },
+    {
+      "type": "note",
+      "html": "This link expires on {{expires_on}}. If you were not expecting this, you can ignore this email."
+    }
+  ],
+  "sample": {
+    "inviter_name": "Alabson Usman",
+    "workspace_name": "Quest Studio",
+    "access_level": "Can view",
+    "access_summary": "open and view it, but not make changes",
+    "invitee_email": "ada@example.com",
+    "action_url": "http://localhost:4000/invite/SAMPLE_TOKEN_NOT_REAL",
+    "expires_on": "October 20, 2026"
+  }
+}

@@ -1,0 +1,16 @@
+{{lead_name}}
+
+{{lead_name}} asked for an enterprise call from the {{lead_source}}.
+
+{{lead_email}} · {{lead_website}} · {{team_size}}
+
+"{{lead_message}}"
+
+They were told to expect a call within 24 hours.
+
+Open the Leads tab: {{leads_url}}
+
+
+--
+AIWA turns a plain-English prompt into a working full-stack app.
+Lagos, Nigeria

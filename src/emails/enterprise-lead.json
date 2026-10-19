@@ -1,0 +1,47 @@
+{
+  "preview": {
+    "label": "enterprise lead",
+    "order": 11
+  },
+  "subject": "Enterprise lead: {{lead_name}}",
+  "preheader": "{{lead_name}} asked for an enterprise call. They expect a call within 24 hours.",
+  "audience": "AIWA team",
+  "tab": "Enterprise lead",
+  "header": "title",
+  "title": "{{lead_name}}",
+  "footerMark": true,
+  "blocks": [
+    {
+      "type": "p",
+      "html": "<strong style=\"font-weight:600;\">{{lead_name}}</strong> asked for an enterprise call from the {{lead_source}}."
+    },
+    {
+      "type": "meta",
+      "html": "<a class=\"t-link lnk\" href=\"mailto:{{lead_email}}\" style=\"color:#BF4E0B; text-decoration:underline;\">{{lead_email}}</a> &middot; <a class=\"t-link lnk\" href=\"{{lead_website_url}}\" style=\"color:#BF4E0B; text-decoration:underline;\">{{lead_website}}</a> &middot; {{team_size}}"
+    },
+    {
+      "type": "quote",
+      "html": "{{lead_message}}"
+    },
+    {
+      "type": "note",
+      "html": "They were told to expect a call within 24 hours."
+    },
+    {
+      "type": "button",
+      "label": "Open the Leads tab",
+      "url": "{{leads_url}}",
+      "arrow": true
+    }
+  ],
+  "sample": {
+    "lead_name": "Jordan Vale",
+    "lead_source": "pricing page",
+    "lead_email": "jordan@studiovale.com",
+    "lead_website": "studiovale.com",
+    "lead_website_url": "https://studiovale.com",
+    "team_size": "11-50 people",
+    "lead_message": "We run a 40-person product studio and want to move client MVPs onto one platform with volume credits and sign-off flows.",
+    "leads_url": "http://localhost:4000/admin/leads"
+  }
+}

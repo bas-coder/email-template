@@ -117,8 +117,8 @@ function renderEmail(email, name, config) {
 }
 
 function plainText(email, config) {
-  const strip = (h) => h.replace(/<a [^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/g, '$2').replace(/<[^>]+>/g, '').replace(/&rarr;/g, '->').replace(/&middot;/g, '·').replace(/&#127881;/g, '').replace(/&amp;/g, '&');
-  const lines = [email.header === 'title' ? strip(email.title).trim() : email.tab, ''];
+  const strip = (h) => h.replace(/<a [^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/g, '$2').replace(/<[^>]+>/g, '').replace(/&rarr;/g, '->').replace(/&middot;/g, '·').replace(/&#8217;/g, '’').replace(/&#127881;/g, '').replace(/&amp;/g, '&').trim();
+  const lines = [strip(email.header === 'title' ? email.title : email.tab), ''];
   for (const b of email.blocks) {
     if (['p', 'heading', 'meta', 'note'].includes(b.type)) lines.push(strip(b.html), '');
     if (b.type === 'quote') lines.push(`"${strip(b.html)}"`, '');
@@ -143,7 +143,7 @@ function galleryPage(items) {
 <title>AIWA Email templates</title>
 <style>
   * { box-sizing: border-box; }
-  body { margin: 0; background: #FAF8F5; color: #26231E; font-family: Arial, Helvetica, sans-serif; transition: background-color .2s ease; }
+  body { margin: 0; background: #FAF8F5; color: #26231E; font-family: Arial, Helvetica, sans-serif; }
   .bar { position: sticky; top: 0; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; min-height: 78px; padding: 18px 19px; background: #FFFFFF; border-bottom: 1px solid #DDDDDD; }
   .bar h1 { margin: 0 1px 0 0; font-size: 18px; font-weight: 700; white-space: nowrap; }
   .field { display: flex; align-items: center; gap: 4px; font-size: 15px; }
@@ -222,6 +222,8 @@ function build() {
   fs.mkdirSync(preview, { recursive: true });
   const names = fs.readdirSync(path.join(SRC, 'emails')).filter((f) => f.endsWith('.json')).map((f) => f.replace(/\.json$/, '')).sort();
   const items = [];
+  const manifest = [];
+  const varsIn = (...texts) => [...new Set(texts.join('\n').match(/\{\{\w+\}\}/g) || [])].map((v) => v.slice(2, -2)).sort();
   for (const name of names) {
     const email = JSON.parse(read(`src/emails/${name}.json`));
     const isMaster = name === '_master';
@@ -229,8 +231,20 @@ function build() {
     if (isMaster) {
       fs.writeFileSync(path.join(ROOT, 'master.html'), html);
     } else {
+      const text = plainText(email, config);
       fs.writeFileSync(path.join(out, `${name}.html`), stripBlockMarkers(html));
-      fs.writeFileSync(path.join(out, `${name}.txt`), plainText(email, config));
+      fs.writeFileSync(path.join(out, `${name}.txt`), text);
+      manifest.push({
+        name,
+        html: `emails/${name}.html`,
+        text: `emails/${name}.txt`,
+        audience: email.audience,
+        subject: email.subject,
+        preheader: email.preheader,
+        variables: varsIn(email.subject, html, text),
+        sample: email.sample,
+        order: email.preview?.order ?? 99,
+      });
     }
     const sample = { ...email.sample };
     let prev = fillSample(renderEmail(email, name, { ...config, assetBaseUrl: '../assets' }), sample);
@@ -246,6 +260,9 @@ function build() {
     if (bytes > 100 * 1024) console.warn(`! ${name}.html is ${(bytes / 1024).toFixed(1)} KB; Gmail clips messages over 102 KB`);
   }
   fs.writeFileSync(path.join(preview, 'index.html'), galleryPage([...items].sort((a, b) => a.order - b.order)));
+  // One file the sending code can read: subject, preview text and the variables each email needs.
+  const list = manifest.sort((a, b) => a.order - b.order).map(({ order, ...m }) => m);
+  fs.writeFileSync(path.join(out, 'manifest.json'), JSON.stringify(list, null, 2) + '\n');
   const todo = config.socials.filter((s) => !s.url || s.url === '#').map((s) => s.label);
   if (todo.length) console.warn(`! Social links still "#": ${todo.join(', ')} (config.json)`);
   console.log(`Built master.html + ${items.length - 1} emails in ${Date.now() - t0} ms: ${items.map((i) => `${i.name} (${(i.bytes / 1024).toFixed(1)} KB)`).join(', ')}`);

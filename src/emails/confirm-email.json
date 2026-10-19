@@ -1,0 +1,42 @@
+{
+  "preview": {
+    "label": "confirm email",
+    "order": 1
+  },
+  "subject": "Confirm your email",
+  "preheader": "Verify your address to secure your AIWA account. The link expires in 24 hours.",
+  "audience": "User",
+  "tab": "Confirm your email",
+  "header": "hero",
+  "hero": "hero-dawn.jpg",
+  "heroDark": "hero-dawn-dark.jpg",
+  "heroAlt": "Sunrise over the hills, with an AIWA prompt: Ask AIWA to build a CRM for my sales team",
+  "heroHref": "{{action_url}}",
+  "blocks": [
+    {
+      "type": "heading",
+      "html": "Confirm it&#8217;s you"
+    },
+    {
+      "type": "p",
+      "html": "Verify your email address to secure your AIWA account and start building full-stack apps from a plain-English prompt."
+    },
+    {
+      "type": "button",
+      "label": "Verify email",
+      "url": "{{action_url}}",
+      "arrow": true
+    },
+    {
+      "type": "fallback",
+      "url": "{{action_url}}"
+    },
+    {
+      "type": "note",
+      "html": "This link expires in 24 hours. If you didn&#8217;t create an AIWA account, you can safely ignore this email."
+    }
+  ],
+  "sample": {
+    "action_url": "https://localhost:4800/api/auth/verify-email?token=SAMPLE_TOKEN_NOT_REAL"
+  }
+}

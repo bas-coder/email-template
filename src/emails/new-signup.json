@@ -1,0 +1,35 @@
+{
+  "preview": {
+    "label": "new signup",
+    "order": 9
+  },
+  "subject": "New signup: {{user_name}}",
+  "preheader": "{{user_name}} ({{user_email}}) just signed up. They are user #{{user_number}}.",
+  "audience": "AIWA team",
+  "tab": "New signup",
+  "header": "title",
+  "title": "{{user_name}}",
+  "footerMark": true,
+  "blocks": [
+    {
+      "type": "meta",
+      "html": "<a class=\"t-link lnk\" href=\"mailto:{{user_email}}\" style=\"color:#BF4E0B; text-decoration:underline;\">{{user_email}}</a>"
+    },
+    {
+      "type": "p",
+      "html": "They are user <strong style=\"font-weight:600;\">#{{user_number}}</strong>."
+    },
+    {
+      "type": "button",
+      "label": "Open the control panel",
+      "url": "{{control_panel_url}}",
+      "arrow": true
+    }
+  ],
+  "sample": {
+    "user_name": "Jamie Rivers",
+    "user_email": "newuser@example.com",
+    "user_number": "128",
+    "control_panel_url": "http://localhost:4000/admin"
+  }
+}
