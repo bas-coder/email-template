@@ -1,4 +1,5 @@
 {
+  "preview": { "label": "live", "order": 3 },
   "subject": "Welcome to AIWA, your account is live",
   "preheader": "You have {{credits}} credits. Describe what you want and hit enter.",
   "audience": "User",

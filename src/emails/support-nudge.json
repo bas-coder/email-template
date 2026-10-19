@@ -1,4 +1,5 @@
 {
+  "preview": { "label": "support", "order": 4 },
   "subject": "Support nudge: {{user_name}}'s deploy keeps failing",
   "preheader": "{{user_name}} ({{user_email}}) needs help. Their deploy has failed repeatedly.",
   "audience": "AIWA team",

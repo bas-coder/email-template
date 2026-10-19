@@ -1,4 +1,5 @@
 {
+  "preview": { "label": "welcome title", "order": 2 },
   "subject": "Your AIWA account is ready",
   "preheader": "It comes with {{credits}} credits. One step left: set your password.",
   "audience": "User",

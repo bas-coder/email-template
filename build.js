@@ -112,49 +112,75 @@ function fillSample(html, sample) {
   return html.replace(/\{\{(\w+)\}\}/g, (m, key) => (key in sample ? escapeHtml(sample[key]) : m));
 }
 
+// Preview viewer: one email at a time, picked by template and mode, at desktop or mobile width.
 function galleryPage(items) {
-  const cards = items.map((it) => `
-    <section class="email">
-      <header>
-        <h2>${escapeHtml(it.subject)}</h2>
-        <p>${escapeHtml(it.audience)} &middot; <code>dist/${it.name}.html</code> &middot; ${(it.bytes / 1024).toFixed(1)} KB</p>
-      </header>
-      <div class="pair">
-        <figure><figcaption>Light</figcaption><iframe src="${it.name}.light.html" title="${escapeHtml(it.subject)} (light)" loading="lazy"></iframe></figure>
-        <figure><figcaption>Dark</figcaption><iframe src="${it.name}.dark.html" title="${escapeHtml(it.subject)} (dark)" loading="lazy"></iframe></figure>
-      </div>
-    </section>`).join('\n');
+  const options = items.flatMap((it) => ['light', 'dark'].map((mode) =>
+    `<option value="${it.name}.${mode}">${escapeHtml(it.label)} ${mode}</option>`)).join('\n        ');
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AIWA Emails</title>
+<title>AIWA Email templates</title>
 <style>
-  :root { --bg:#EDEAE4; --ink:#25211D; --muted:#6B6357; --line:#DDD8CF; }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font:14px/1.5 Inter, -apple-system, 'Segoe UI', Roboto, sans-serif; }
-  .top { position:sticky; top:0; z-index:2; display:flex; gap:16px; align-items:center; justify-content:space-between; padding:14px 24px; background:rgba(237,234,228,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
-  .top h1 { margin:0; font-size:16px; }
-  .top label { color:var(--muted); font-size:13px; display:flex; gap:8px; align-items:center; }
-  main { padding:24px; display:grid; gap:40px; }
-  .email header h2 { margin:0; font-size:15px; }
-  .email header p { margin:2px 0 12px; color:var(--muted); font-size:12px; }
-  .pair { display:flex; gap:24px; flex-wrap:wrap; }
-  figure { margin:0; }
-  figcaption { font-size:12px; color:var(--muted); margin-bottom:6px; }
-  iframe { width:var(--w, 600px); max-width:calc(100vw - 48px); height:1100px; border:1px solid var(--line); border-radius:12px; background:#fff; display:block; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #EEECE7; color: #26231E; font-family: Arial, Helvetica, sans-serif; }
+  .bar { position: sticky; top: 0; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; min-height: 78px; padding: 18px 19px; background: #FFFFFF; border-bottom: 1px solid #DDDDDD; }
+  .bar h1 { margin: 0 1px 0 0; font-size: 18px; font-weight: 700; white-space: nowrap; }
+  .field { display: flex; align-items: center; gap: 4px; font-size: 15px; }
+  .bar select, .bar button { height: 37px; font: 15px Arial, Helvetica, sans-serif; color: #000000; border: 1px solid #767676; border-radius: 2px; }
+  .bar select { min-width: 159px; padding: 0 6px 0 9px; background: #FFFFFF; }
+  .bar button { padding: 0 10px; background: #EFEFEF; cursor: pointer; }
+  .bar button:hover { background: #E5E5E5; }
+  .bar a { margin-left: 8px; font-size: 15px; }
+  .bar .note { margin: 0 0 0 8px; font-size: 12px; color: #555555; }
+  main { display: flex; justify-content: center; padding: 24px 16px 48px; }
+  iframe { display: block; width: 600px; max-width: 100%; height: 1046px; border: 0; background: #FFFFFF; box-shadow: 0 10px 30px rgba(38, 35, 30, 0.10); }
 </style></head>
 <body>
-  <div class="top"><h1>AIWA Emails &middot; ${items.length} templates</h1>
-    <label>Width <select id="w"><option value="600px">Desktop 600</option><option value="375px">Mobile 375</option></select></label>
-  </div>
-  <main>${cards}
-  </main>
+  <header class="bar">
+    <h1>AIWA &middot; Email templates</h1>
+    <label class="field" for="tpl">Template
+      <select id="tpl">
+        ${options}
+      </select>
+    </label>
+    <button type="button" data-width="600" aria-pressed="true">Desktop</button>
+    <button type="button" data-width="375" aria-pressed="false">Mobile &middot; 375</button>
+    <a id="open" href="#" target="_blank" rel="noopener">Open email</a>
+    <p class="note">Reply / Forward controls excluded. Sample links require configuration.</p>
+  </header>
+  <main><iframe id="frame" title="Email preview" scrolling="no"></iframe></main>
 <script>
-  const fit = (f) => { try { f.style.height = '10px'; f.style.height = (f.contentDocument.documentElement.scrollHeight + 2) + 'px'; } catch (e) {} };
-  document.querySelectorAll('iframe').forEach((f) => f.addEventListener('load', () => fit(f)));
-  document.getElementById('w').addEventListener('change', (e) => {
-    document.documentElement.style.setProperty('--w', e.target.value);
-    setTimeout(() => document.querySelectorAll('iframe').forEach(fit), 50);
-  });
+  const frame = document.getElementById('frame');
+  const select = document.getElementById('tpl');
+  const open = document.getElementById('open');
+  const buttons = document.querySelectorAll('[data-width]');
+  // Size the frame to the email. Scrollbars stay off so the email always lays out at its full width.
+  const fit = () => {
+    try {
+      const doc = frame.contentDocument.documentElement;
+      doc.style.overflow = 'hidden';
+      frame.style.height = '10px';
+      frame.style.height = doc.scrollHeight + 'px';
+    } catch (e) {}
+  };
+  const show = (value) => {
+    if (![...select.options].some((o) => o.value === value)) value = select.options[0].value;
+    select.value = value;
+    frame.src = value + '.html';
+    open.href = value + '.html';
+    history.replaceState(null, '', '#' + value);
+  };
+  const setWidth = (w) => {
+    frame.style.width = w + 'px';
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.width === String(w))));
+    try { localStorage.setItem('aiwa-preview-width', w); } catch (e) {}
+    setTimeout(fit, 30);
+  };
+  frame.addEventListener('load', fit);
+  select.addEventListener('change', () => show(select.value));
+  buttons.forEach((b) => b.addEventListener('click', () => setWidth(b.dataset.width)));
+  let saved = null; try { saved = localStorage.getItem('aiwa-preview-width'); } catch (e) {}
+  setWidth(saved === '375' ? 375 : 600);
+  show(location.hash.slice(1));
 </script>
 </body></html>
 `;
@@ -181,10 +207,11 @@ function build() {
     fs.writeFileSync(path.join(preview, `${name}.light.html`), prev.replace('@media (prefers-color-scheme: dark)', '@media not all'));
     fs.writeFileSync(path.join(preview, `${name}.dark.html`), prev.replace('@media (prefers-color-scheme: dark)', '@media all'));
     const bytes = Buffer.byteLength(html);
-    items.push({ name, subject: fillSample(email.subject, email.sample), audience: email.audience || '', bytes });
+    const label = (email.preview && email.preview.label) || name;
+    items.push({ name, label, order: (email.preview && email.preview.order) || 99, bytes });
     if (bytes > 100 * 1024) console.warn(`! ${name}.html is ${(bytes / 1024).toFixed(1)} KB; Gmail clips messages over 102 KB`);
   }
-  fs.writeFileSync(path.join(preview, 'index.html'), galleryPage(items));
+  fs.writeFileSync(path.join(preview, 'index.html'), galleryPage([...items].sort((a, b) => a.order - b.order)));
   const todo = config.socials.filter((s) => !s.url || s.url === '#').map((s) => s.label);
   if (todo.length) console.warn(`! Social links still "#": ${todo.join(', ')} (config.json)`);
   console.log(`Built ${items.length} emails in ${Date.now() - t0} ms: ${items.map((i) => `${i.name} (${(i.bytes / 1024).toFixed(1)} KB)`).join(', ')}`);
